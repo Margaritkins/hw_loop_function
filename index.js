@@ -142,4 +142,41 @@ console.log(getFactorial());
 
 //8. Написати код, який пропонує користувачу вгадати "таємне число".Таємне число зберігається в константі. Користувач намагається вгадати, ви, в залежності від відповіді користувача, дієте підказки: більше або менше таємне число. Після того, як користувач вгадає таємне число, ви виводите йому кількість спроб, які були використанні для вгадування.
 
-//????????????????
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min +1) + min)}; // The maximum is exclusive and the minimum is inclusive
+const MIN = 1;
+const MAX = 5;
+const secretNumber = getRandomInt(MIN, MAX)
+// const secretNumber = 8;
+let userInput = prompt("try gess number");
+let tryCounter = 0;
+
+const isUserInputNumber = function(val){
+    return Number(val);
+  }
+
+while (true) {
+  tryCounter++;
+  if(userInput === null || Number.isNaN(isUserInputNumber(userInput)) || userInput ==='' || userInput ===' '){
+    userInput = prompt("uncorrect input, try again" + tryCounter);
+    continue;
+  }
+  
+  if (isUserInputNumber(userInput) > secretNumber || isUserInputNumber(userInput) < secretNumber) {
+    if (isUserInputNumber(userInput) > secretNumber) {
+      userInput = prompt("try less" + tryCounter);
+    }
+    if (isUserInputNumber(userInput) < secretNumber)
+      userInput = prompt("try bigger" + tryCounter);
+  }
+  if (isUserInputNumber(userInput) === secretNumber) {
+    alert("correct " + tryCounter);
+    break;
+  }
+}
+
+
+
